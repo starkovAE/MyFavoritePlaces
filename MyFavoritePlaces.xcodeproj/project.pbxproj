@@ -15,6 +15,7 @@
 		3F1F779227EC4D67007D7CCB /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1F779127EC4D67007D7CCB /* MainVC.swift */; };
 		3F1F779427EC7897007D7CCB /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1F779327EC7897007D7CCB /* CustomTableViewCell.swift */; };
 		3F1F779627EC7C5D007D7CCB /* PlaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1F779527EC7C5D007D7CCB /* PlaceModel.swift */; };
+		3F1F779F27EC8B8F007D7CCB /* NewPlaceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1F779E27EC8B8F007D7CCB /* NewPlaceTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		3F1F779127EC4D67007D7CCB /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		3F1F779327EC7897007D7CCB /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		3F1F779527EC7C5D007D7CCB /* PlaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceModel.swift; sourceTree = "<group>"; };
+		3F1F779E27EC8B8F007D7CCB /* NewPlaceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlaceTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				3F1F779127EC4D67007D7CCB /* MainVC.swift */,
+				3F1F779E27EC8B8F007D7CCB /* NewPlaceTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F1F779F27EC8B8F007D7CCB /* NewPlaceTableViewController.swift in Sources */,
 				3F1F777E27EC4B31007D7CCB /* AppDelegate.swift in Sources */,
 				3F1F779227EC4D67007D7CCB /* MainVC.swift in Sources */,
 				3F1F779627EC7C5D007D7CCB /* PlaceModel.swift in Sources */,

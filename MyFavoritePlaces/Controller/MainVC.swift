@@ -15,7 +15,7 @@ class MainVC: UITableViewController {
 //        "Speak Easy", "Morris Pub", "Вкусные истории",
 //        "Классик", "Love&Life", "Шок", "Бочка"
 //    ]
-    let places = Place.getPlaces()//вернули массиы данных (статичный метод структуры, который возвращает массив)
+    var places = Place.getPlaces()//вернули массиы данных (статичный метод структуры, который возвращает массив)
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,11 +34,19 @@ class MainVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
+        let place = places[indexPath.row]
+        cell.nameLabel?.text = place.name
+        cell.locationLabel.text = place.location
+        cell.typeLabel.text = place.type
+        
+        if place.image == nil {
+            cell.imageOfPlace?.image = UIImage(named: place.restaurantImage ?? "")
+        } else {
+            cell.imageOfPlace.image = place.image
+        }
+        
+        
        
-        cell.nameLabel?.text = places[indexPath.row].name
-        cell.locationLabel.text = places[indexPath.row].location
-        cell.typeLabel.text = places[indexPath.row].type
-        cell.imageOfPlace?.image = UIImage(named: places[indexPath.row].image)
         cell.imageOfPlace?.layer.cornerRadius = cell.imageOfPlace.frame.size.height / 2
         cell.imageOfPlace?.clipsToBounds = true
         return cell
@@ -58,7 +66,12 @@ class MainVC: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    @IBAction func cancelAction(_ segue: UIStoryboardSegue) {
-        
+    //при нажаьии на save, будет происходить обратный переход и вызов метода для сохранения новых place
+    @IBAction func unwingSegue(_ segue: UIStoryboardSegue) {
+        //передаем данные через сегвей, обращаемся к источнику
+        guard let newPlaceVC = segue.source as? NewPlaceTableViewController else { return }
+        newPlaceVC.saveNewPlace()
+        places.append(newPlaceVC.newPlace!)
+        tableView.reloadData()
     }
 }
