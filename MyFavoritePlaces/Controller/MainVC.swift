@@ -60,20 +60,23 @@ class MainVC: UITableViewController {
     
     
     
-    /*
+
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "snowDetail" {
+            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            let place = places[indexPath.row]
+            guard let newPlaceVC = segue.destination as? NewPlaceTableViewController else { return }
+            newPlaceVC.currentPlace = place //передаем тип place из выбранной ячейки во VC newPlaceVC
+        }
     }
-    */
+  
     //при нажаьии на save, будет происходить обратный переход и вызов метода для сохранения новых place
     @IBAction func unwingSegue(_ segue: UIStoryboardSegue) {
         //передаем данные через сегвей, обращаемся к источнику
         guard let newPlaceVC = segue.source as? NewPlaceTableViewController else { return }
-        newPlaceVC.saveNewPlace()
+        newPlaceVC.savePlace()
        
         tableView.reloadData()
     }

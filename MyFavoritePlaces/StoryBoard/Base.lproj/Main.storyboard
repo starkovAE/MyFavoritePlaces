@@ -69,6 +69,7 @@
                                     <outlet property="locationLabel" destination="n2f-nt-eAA" id="07N-bh-RGv"/>
                                     <outlet property="nameLabel" destination="xRk-QI-kp3" id="JA4-A9-2fS"/>
                                     <outlet property="typeLabel" destination="Tmi-gh-bj0" id="fpt-vA-MKa"/>
+                                    <segue destination="jrZ-lk-NJd" kind="show" identifier="snowDetail" id="L5A-UN-tSW"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -77,7 +78,7 @@
                             <outlet property="delegate" destination="iXM-Zz-MHX" id="mWs-2V-rjT"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="My Places" id="0iU-ya-QZn">
+                    <navigationItem key="navigationItem" title="My Places" largeTitleDisplayMode="never" id="0iU-ya-QZn">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="ymx-cg-DxZ">
                             <connections>
                                 <segue destination="Fz5-TA-Awr" kind="presentation" modalTransitionStyle="crossDissolve" id="uIT-6e-F8F"/>
@@ -234,7 +235,7 @@
                             <outlet property="delegate" destination="jrZ-lk-NJd" id="smR-NV-8ip"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="New Place" id="Bpn-ct-NB7">
+                    <navigationItem key="navigationItem" title="New Place" largeTitleDisplayMode="always" id="Bpn-ct-NB7">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="JXA-N7-3EH">
                             <connections>
                                 <action selector="cancelAction:" destination="jrZ-lk-NJd" id="hfu-j8-FPT"/>
@@ -264,14 +265,15 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bLq-fq-NYk" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="m0Z-QV-oCu">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="m0Z-QV-oCu">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="24"/>
+                            <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="27"/>
                         </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
-                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                            <color key="textShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -291,6 +293,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="WR3-CZ-qH1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -302,6 +307,9 @@
             <point key="canvasLocation" x="1924.6376811594205" y="109.82142857142857"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="xM7-a8-zdG"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="Photo" width="195" height="196"/>
         <systemColor name="systemBackgroundColor">

@@ -9,7 +9,8 @@ import UIKit
 
 class NewPlaceTableViewController: UITableViewController {
     
-  
+    var currentPlace: Place?
+    
     var imageIsChanged = false
     
     @IBOutlet weak var placeImage: UIImageView!
@@ -27,6 +28,8 @@ class NewPlaceTableViewController: UITableViewController {
         super.viewDidLoad()
         setupViews()
         tableView.tableFooterView = UIView() //чтобы не было разлиновки! ниже ячеек
+        
+        setupEditScreen()
     }
     private func setupViews() {
         saveButton.isEnabled = false
@@ -65,9 +68,9 @@ class NewPlaceTableViewController: UITableViewController {
             
         }
     }
-    func saveNewPlace() {
-      
-        
+    //этот метод будет сохранять новые и отредактированные place
+    func savePlace() {
+   
         var imagePlaces: UIImage?
         
         if imageIsChanged { //если изображение было измененно пользователем
@@ -80,9 +83,41 @@ class NewPlaceTableViewController: UITableViewController {
         
         let newPlace = Place(name: placeName.text ?? "" , location: placeLocation.text, type: placeType.text, imageData: imageData)
         //сохранянем объект в базе данных
-        StorageManager.saveObject(newPlace)
+        if currentPlace != nil {
+            try! realm.write() {
+                currentPlace?.name = newPlace.name
+                currentPlace?.location = newPlace.location
+                currentPlace?.type = newPlace.type
+                currentPlace?.imageData = newPlace.imageData
+            }
+        } else {
+            StorageManager.saveObject(newPlace)
+        }
     }
-    
+    //MARK: - Метод в котором будем работать над экраном редактирования записи
+    private func setupEditScreen() {
+        if currentPlace != nil {
+            imageIsChanged = true
+            setupNavigationBar()
+            
+            guard let data = currentPlace?.imageData, let image = UIImage(data: data) else { return }
+            placeImage.image = image
+            placeImage.contentMode = .scaleAspectFill //cодержимое по imageView
+            placeName.text = currentPlace?.name
+            placeLocation.text = currentPlace?.location
+            placeType.text = currentPlace?.type
+        }
+    }
+    //MARK: - setupNavigationBar()
+    private func setupNavigationBar() {
+        if let topItem = navigationController?.navigationBar.topItem {
+            topItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        }
+        navigationItem.leftBarButtonItem = nil
+        title = currentPlace?.name
+        saveButton.isEnabled = true
+    }
+    //MARK: - cancelAction()
     @IBAction func cancelAction(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
