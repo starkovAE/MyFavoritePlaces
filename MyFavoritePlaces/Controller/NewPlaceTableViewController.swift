@@ -9,7 +9,7 @@ import UIKit
 
 class NewPlaceTableViewController: UITableViewController {
     
-    var newPlace: Place?
+  
     var imageIsChanged = false
     
     @IBOutlet weak var placeImage: UIImageView!
@@ -66,13 +66,21 @@ class NewPlaceTableViewController: UITableViewController {
         }
     }
     func saveNewPlace() {
+      
+        
         var imagePlaces: UIImage?
+        
         if imageIsChanged { //если изображение было измененно пользователем
             imagePlaces = placeImage.image
         } else {//если нет добавляем свое стандартное
             imagePlaces = UIImage(named: "imagePlaceholder")
         }
-        newPlace = Place(name: placeName.text ?? "", location: placeLocation.text, type: placeType.text, image: imagePlaces, restaurantImage: nil)
+        
+        let imageData = imagePlaces?.pngData() //для преобразования в нужный тип
+        
+        let newPlace = Place(name: placeName.text ?? "" , location: placeLocation.text, type: placeType.text, imageData: imageData)
+        //сохранянем объект в базе данных
+        StorageManager.saveObject(newPlace)
     }
     
     @IBAction func cancelAction(_ sender: UIBarButtonItem) {
